@@ -52,7 +52,7 @@ const testCases = [
   {
     input1: [1],
     input2: [2],
-    description: "Is both arearrays with different number",
+    description: "both arearrays with different number",
     expectedOutput: false,
   },
   {
@@ -64,7 +64,7 @@ const testCases = [
   {
     input1: 1,
     input2: "1",
-    description: " one is number another is string",
+    description: "one is number another is string",
     expectedOutput: false,
   },
   {
@@ -88,7 +88,7 @@ const testCases = [
   {
     input1: { a: { b: 1 } },
     input2: { a: { b: 1 } },
-    description: "nested objects",
+    description: "both are nested objects",
     expectedOutput: true,
   },
 ];
