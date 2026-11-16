@@ -1,61 +1,102 @@
-const testData = [
+const { isEqual } = require("./05_deep_equality");
+
+const testCases = [
   {
     input1: 1,
     input2: 1,
-    message: "If both are numbers",
+    description: " both are numbers",
+    expectedOutput: true,
   },
   {
     input1: "a",
     input2: "a",
-    message: "If both are strings",
+    description: " both are strings",
+    expectedOutput: true,
   },
-  { input1: [], input2: [], message: "If both are empty arrays" },
+  {
+    input1: [],
+    input2: [],
+    description: " both are empty arrays",
+    expectedOutput: true,
+  },
   {
     input1: { a: undefined },
     input2: { b: 1 },
-    message: "If a is 1 , b is undefined",
+    description: " a is 1 , b is undefined",
+    expectedOutput: false,
   },
   {
     input1: { b: 1 },
     input2: { a: undefined },
-    message: "If b is 1 , a is undefined",
+    description: " b is 1 , a is undefined",
+    expectedOutput: false,
   },
-  { input1: [], input2: {}, message: "If one is array another is object" },
-  { input1: [], input2: [], message: "Is both are empty arrays" },
-  { input1: [1], input2: [1], message: "If both are arrays with same number" },
+  {
+    input1: [],
+    input2: {},
+    description: " one is array another is object",
+    expectedOutput: false,
+  },
+  {
+    input1: [],
+    input2: [],
+    description: "Is both are empty arrays",
+    expectedOutput: true,
+  },
+  {
+    input1: [1],
+    input2: [1],
+    description: " both are arrays with same number",
+    expectedOutput: true,
+  },
   {
     input1: [1],
     input2: [2],
-    message: "Is both arearrays with different number",
+    description: "Is both arearrays with different number",
+    expectedOutput: false,
   },
   {
     input1: [1],
     input2: [1, 2],
-    message: "If both arrays have different length",
+    description: " both arrays have different length",
+    expectedOutput: false,
   },
-  { input1: 1, input2: "1", message: "If one is number another is string" },
+  {
+    input1: 1,
+    input2: "1",
+    description: " one is number another is string",
+    expectedOutput: false,
+  },
   {
     input1: { a: 1 },
     input2: { a: 1 },
-    message: "If both are objects with same keys",
+    description: " both are objects with same keys",
+    expectedOutput: true,
   },
   {
     input1: { a: 1 },
     input2: { b: 1 },
-    message: "If both are objects with different keys",
+    description: " both are objects with different keys",
+    expectedOutput: false,
   },
   {
     input1: { a: [1, [5, [1]], 1, 2] },
     input2: { a: [1, [5, [1]], 1, 2] },
-    message: "If objects have arrays as values",
+    description: "objects have arrays as values",
+    expectedOutput: true,
   },
   {
     input1: { a: { b: 1 } },
     input2: { a: { b: 1 } },
-    message: "If nested objects are there",
+    description: "nested objects",
+    expectedOutput: true,
   },
 ];
 
-module.exports = {
-  testData,
-};
+for (let testCase of testCases) {
+  const icon =
+    isEqual(testCase.input1, testCase.input2) === testCase.expectedOutput
+      ? "✅"
+      : "❌";
+  console.log(`${icon} :  ${testCase.description}`);
+}

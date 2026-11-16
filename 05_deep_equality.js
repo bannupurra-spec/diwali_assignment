@@ -1,5 +1,3 @@
-const t = require("./testcases");
-
 function isEqual(value1, value2) {
   if (typeof value1 !== "object" && typeof value2 !== "object") {
     return value1 === value2;
@@ -8,7 +6,7 @@ function isEqual(value1, value2) {
     typeof value2 === "object" &&
     Object.keys(value1).length === Object.keys(value2).length
   ) {
-    if (Array.isArray(value1) != Array.isArray(value2)) return false;
+    if (Array.isArray(value1) !== Array.isArray(value2)) return false;
 
     for (const key in value1) {
       let result = key in value2 && isEqual(value1[key], value2[key]);
@@ -16,14 +14,9 @@ function isEqual(value1, value2) {
     }
     return true;
   }
+  return false;
 }
 
-function test(testCase) {
-  const icon = isEqual(testCase.input1, testCase.input2) ? "✅" : "❌";
-  console.log(testCase.input1, testCase.input2);
-  console.log(`${icon} : ${testCase.message} \n`);
-}
-
-for (let testCase of t.testData) {
-  test(testCase);
-}
+module.exports = {
+  isEqual,
+};
