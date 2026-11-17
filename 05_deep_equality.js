@@ -28,9 +28,9 @@ function isEqual(value1, value2) {
       return true;
     case "object":
       return areEqualObjects(value1, value2);
+    default:
+      return areEqualValues(value1, value2);
   }
-
-  return value1 === value2;
 }
 
 function test(description, expectedOutput, input1, input2) {
@@ -89,11 +89,14 @@ function testObjects() {
   );
 }
 
+function testArray() {}
+
 function main() {
   //testNumbers();
   // testBoolean();
   // testUndefinedNullNaN();
-  testObjects();
+  // testObjects();
+  testArray();
 }
 
 main();
