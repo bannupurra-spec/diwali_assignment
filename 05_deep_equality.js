@@ -1,6 +1,6 @@
 function type(val) {
   if (typeof val === "number") return "number";
-  if (typeof val === "string") return "string";
+  if (val === null) return "null";
   return typeof val;
 }
 
@@ -10,7 +10,7 @@ function areEqualValues(value1, value2) {
 
 function isEqual(value1, value2) {
   if (type(value1) !== type(value2)) return false;
-
+  if (type(value1) === "null") return true;
   return value1 === value2;
 }
 
@@ -32,11 +32,15 @@ function testNumbers() {
 function testBoolean() {
   test("Two same boolean should be true", true, true, true);
   test("Two different boolean should be false", false, false, true);
+  test("One is boolean another is number should be false", false, false, 10);
 }
+
+function testUndefinedNullNaN() {}
 
 function main() {
   //testNumbers();
-  testBoolean();
+  // testBoolean();
+  testUndefinedNullNaN();
 }
 
 main();
