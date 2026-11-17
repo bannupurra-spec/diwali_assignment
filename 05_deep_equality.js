@@ -1,6 +1,7 @@
 function type(val) {
   if (val === null) return "null";
   if (Number.isNaN(val)) return "NaN";
+  if (Array.isArray(val)) return "array";
   return typeof val;
 }
 
@@ -12,6 +13,7 @@ function areEqualObjects(value1, value2) {
   if (Object.keys(value1).length === Object.keys(value2).length) {
     for (const key in value1) {
       const result = key in value2 && isEqual(value1[key], value2[key]);
+
       if (!result) return false;
     }
     return true;
@@ -27,6 +29,7 @@ function isEqual(value1, value2) {
     case "NaN":
       return true;
     case "object":
+    case "array":
       return areEqualObjects(value1, value2);
     default:
       return areEqualValues(value1, value2);
@@ -89,10 +92,27 @@ function testObjects() {
   );
 }
 
-function testArray() {}
+function testArray() {
+  test("Two empty arrays should be true", true, [], []);
+  test("object and list should be false", false, {}, []);
+  test("two arrays with diff values should be false", false, [1], [2]);
+  test("two arrays with same values should be true", true, [1], [1]);
+  test(
+    "two arrays with same nested array values should be true",
+    true,
+    [1, [2]],
+    [1, [2]],
+  );
+  test(
+    "two arrays with diff nested array values should be false",
+    false,
+    [1, [1]],
+    [2, [2]],
+  );
+}
 
 function main() {
-  //testNumbers();
+  // testNumbers();
   // testBoolean();
   // testUndefinedNullNaN();
   // testObjects();
