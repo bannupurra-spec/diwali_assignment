@@ -11,7 +11,7 @@ function areEqualValues(value1, value2) {
 function areEqualObjects(value1, value2) {
   if (Object.keys(value1).length === Object.keys(value2).length) {
     for (const key in value1) {
-      let result = key in value2 && isEqual(value1[key], value2[key]);
+      const result = key in value2 && isEqual(value1[key], value2[key]);
       if (!result) return false;
     }
     return true;
@@ -58,32 +58,34 @@ function testUndefinedNullNaN() {
   test("Two same NULL values should be true", true, null, null);
   test("Two same Undefined values should be true", true, undefined, undefined);
   test("Two same NaN values should be true", true, NaN, NaN);
-  test(
-    "One is null other is undefined should be false",
-    false,
-    null,
-    undefined,
-  );
-  test("One is NaN other is undefined should be false", false, NaN, undefined);
-  test("One is number other is NaN should be false", false, 5, NaN);
-  test("One is boolean other is null should be false", false, true, null);
+  test("null and undefined should be false", false, null, undefined);
+  test("NaN and undefined should be false", false, NaN, undefined);
+  test("number and NaN should be false", false, 5, NaN);
+  test("boolean and null should be false", false, true, null);
 }
 
 function testObjects() {
   test("Two empty objects should be true", true, {}, {});
   test("Empty and non-empty object should be false", false, { a: 1 }, {});
   test(
-    "object with same keys and values should be true",
+    "object with same keys & values should be true",
     true,
     { a: 1 },
     { a: 1 },
   );
-  test("object with different keys should be false", false, { a: 1 }, { b: 1 });
+  test("object with diff keys should be false", false, { a: 1 }, { b: 1 });
+  test("object with diff values should be false", false, { a: 1 }, { a: 2 });
   test(
-    "object with same keys different values should be false",
+    "Two objects with same nested objects should be true",
+    true,
+    { a: { b: 1 } },
+    { a: { b: 1 } },
+  );
+  test(
+    "Two objects with diff nested objects should be false",
     false,
-    { a: 1 },
-    { a: 2 },
+    { a: { b: 1 }, d: 3 },
+    { a: { c: 2 }, d: 3 },
   );
 }
 
