@@ -29,8 +29,13 @@ function testNumbers() {
   test("One is number another is string should be false", false, 1, "1");
 }
 
+function testBoolean() {
+  test("Two same boolean should be true", true, true, true);
+}
+
 function main() {
   testNumbers();
+  testBoolean();
 }
 
 main();
