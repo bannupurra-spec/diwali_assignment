@@ -8,10 +8,23 @@ function areEqualValues(value1, value2) {
   return value1 === value2;
 }
 
+function areEqualObjects(value1, value2) {
+  for (const key in value1) {
+    let result = key in value2 && isEqual(value1[key], value2[key]);
+    if (!result) return false;
+  }
+  return true;
+}
+
 function isEqual(value1, value2) {
   if (type(value1) !== type(value2)) return false;
-  if (type(value1) === "null") return true;
-  if (type(value1) === "NaN") return true;
+
+  switch (type(value1)) {
+    case "null":
+    case "NaN":
+      return true;
+  }
+
   return value1 === value2;
 }
 
@@ -51,10 +64,13 @@ function testUndefinedNullNaN() {
   test("One is boolean other is null should be false", false, true, null);
 }
 
+function testObjects() {}
+
 function main() {
   //testNumbers();
   // testBoolean();
-  testUndefinedNullNaN();
+  // testUndefinedNullNaN();
+  testObjects();
 }
 
 main();
