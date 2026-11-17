@@ -1,6 +1,6 @@
 function type(val) {
-  if (typeof val === "number") return "number";
   if (val === null) return "null";
+  if (Number.isNaN(val)) return "NaN";
   return typeof val;
 }
 
@@ -11,6 +11,7 @@ function areEqualValues(value1, value2) {
 function isEqual(value1, value2) {
   if (type(value1) !== type(value2)) return false;
   if (type(value1) === "null") return true;
+  if (type(value1) === "NaN") return true;
   return value1 === value2;
 }
 
@@ -37,6 +38,17 @@ function testBoolean() {
 
 function testUndefinedNullNaN() {
   test("Two same NULL values should be true", true, null, null);
+  test("Two same Undefined values should be true", true, undefined, undefined);
+  test("Two same NaN values should be true", true, NaN, NaN);
+  test(
+    "One is null other is undefined should be false",
+    false,
+    null,
+    undefined,
+  );
+  test("One is NaN other is undefined should be false", false, NaN, undefined);
+  test("One is number other is NaN should be false", false, 5, NaN);
+  test("One is boolean other is null should be false", false, true, null);
 }
 
 function main() {
