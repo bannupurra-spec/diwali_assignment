@@ -72,6 +72,12 @@ function testUndefinedNullNaN() {
 function testObjects() {
   test("Two empty objects should be true", true, {}, {});
   test("Empty and non-empty object should be false", false, { a: 1 }, {});
+  test(
+    "object with same keys and values should be true",
+    true,
+    { a: 1 },
+    { a: 1 },
+  );
 }
 
 function main() {
