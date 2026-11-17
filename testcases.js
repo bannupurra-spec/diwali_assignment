@@ -1,5 +1,3 @@
-const { isEqual } = require("./05_deep_equality");
-
 const testCases = [
   {
     input1: 1,
@@ -98,11 +96,3 @@ const testCases = [
     expectedOutput: false,
   },
 ];
-
-for (const testCase of testCases) {
-  const icon =
-    isEqual(testCase.input1, testCase.input2) === testCase.expectedOutput
-      ? "✅"
-      : "❌";
-  console.log(`${icon} :  ${testCase.description}`);
-}
