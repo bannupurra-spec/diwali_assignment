@@ -35,7 +35,9 @@ function testBoolean() {
   test("One is boolean another is number should be false", false, false, 10);
 }
 
-function testUndefinedNullNaN() {}
+function testUndefinedNullNaN() {
+  test("Two same NULL values should be true", true, null, null);
+}
 
 function main() {
   //testNumbers();
