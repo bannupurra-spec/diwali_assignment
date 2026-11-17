@@ -9,11 +9,14 @@ function areEqualValues(value1, value2) {
 }
 
 function areEqualObjects(value1, value2) {
-  for (const key in value1) {
-    let result = key in value2 && isEqual(value1[key], value2[key]);
-    if (!result) return false;
+  if (Object.keys(value1).length === Object.keys(value2).length) {
+    for (const key in value1) {
+      let result = key in value2 && isEqual(value1[key], value2[key]);
+      if (!result) return false;
+    }
+    return true;
   }
-  return true;
+  return false;
 }
 
 function isEqual(value1, value2) {
@@ -23,6 +26,8 @@ function isEqual(value1, value2) {
     case "null":
     case "NaN":
       return true;
+    case "object":
+      return areEqualObjects(value1, value2);
   }
 
   return value1 === value2;
@@ -64,7 +69,9 @@ function testUndefinedNullNaN() {
   test("One is boolean other is null should be false", false, true, null);
 }
 
-function testObjects() {}
+function testObjects() {
+  test("Two empty objects should be true", true, {}, {});
+}
 
 function main() {
   //testNumbers();
