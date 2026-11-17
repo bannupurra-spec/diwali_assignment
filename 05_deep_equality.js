@@ -23,6 +23,10 @@ function test(description, expectedOutput, input1, input2) {
 
 function testNumbers() {
   test("Two same numbers should be true", true, 1, 1);
+  test("Two different numbers should be false", false, 1, 2);
+  test("Two same negative numbers should be true", true, -1, -1);
+  test("Two different negative numbers should be false", false, -2, -1);
+  test("One is number another is string should be false", false, 1, "1");
 }
 
 function main() {
