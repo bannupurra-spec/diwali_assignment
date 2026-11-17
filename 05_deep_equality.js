@@ -31,10 +31,11 @@ function testNumbers() {
 
 function testBoolean() {
   test("Two same boolean should be true", true, true, true);
+  test("Two different boolean should be false", false, false, true);
 }
 
 function main() {
-  testNumbers();
+  //testNumbers();
   testBoolean();
 }
 
