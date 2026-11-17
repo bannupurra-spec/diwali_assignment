@@ -78,6 +78,7 @@ function testObjects() {
     { a: 1 },
     { a: 1 },
   );
+  test("object with different keys should be false", false, { a: 1 }, { b: 1 });
 }
 
 function main() {
