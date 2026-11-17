@@ -51,10 +51,22 @@ function testNumbers() {
   test("One is number another is string should be false", false, 1, "1");
 }
 
+function testStrings() {
+  test("Two same empty strings should be true", true, "", "");
+  test("Two same strings should be true", true, "str", "str");
+  test("Two different strings should be false", false, "str", "s");
+  test("string and number should be false", false, "20", 20);
+  test("string and object should be false", false, "str", {});
+  test("string and array should be false", false, "str", []);
+}
+
 function testBoolean() {
   test("Two same boolean should be true", true, true, true);
   test("Two different boolean should be false", false, false, true);
-  test("One is boolean another is number should be false", false, false, 10);
+  test("boolean and number should be false", false, false, 10);
+  test("boolean and string should be false", false, false, "10");
+  test("boolean and object should be false", false, true, {});
+  test("boolean and array should be false", false, true, []);
 }
 
 function testUndefinedNullNaN() {
@@ -106,16 +118,17 @@ function testArray() {
   test(
     "two arrays with diff nested array values should be false",
     false,
-    [1, [1]],
-    [2, [2]],
+    [1, [1], 2, 3],
+    [2, [2], 2, 2],
   );
 }
 
 function main() {
-  // testNumbers();
-  // testBoolean();
-  // testUndefinedNullNaN();
-  // testObjects();
+  testNumbers();
+  testBoolean();
+  testStrings();
+  testUndefinedNullNaN();
+  testObjects();
   testArray();
 }
 
