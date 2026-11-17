@@ -4,37 +4,37 @@ const testCases = [
   {
     input1: 1,
     input2: 1,
-    description: " both are numbers",
+    description: "both are same numbers",
     expectedOutput: true,
   },
   {
     input1: "a",
     input2: "a",
-    description: " both are strings",
+    description: "both are same strings",
     expectedOutput: true,
   },
   {
     input1: [],
     input2: [],
-    description: " both are empty arrays",
+    description: "both are empty arrays",
     expectedOutput: true,
   },
   {
     input1: { a: undefined },
     input2: { b: 1 },
-    description: " a is 1 , b is undefined",
+    description: "a is 1 , b is undefined",
     expectedOutput: false,
   },
   {
     input1: { b: 1 },
     input2: { a: undefined },
-    description: " b is 1 , a is undefined",
+    description: "b is 1 , a is undefined",
     expectedOutput: false,
   },
   {
     input1: [],
     input2: {},
-    description: " one is array another is object",
+    description: "one is array another is object",
     expectedOutput: false,
   },
   {
@@ -46,7 +46,7 @@ const testCases = [
   {
     input1: [1],
     input2: [1],
-    description: " both are arrays with same number",
+    description: "both are arrays with same number",
     expectedOutput: true,
   },
   {
@@ -58,7 +58,7 @@ const testCases = [
   {
     input1: [1],
     input2: [1, 2],
-    description: " both arrays have different length",
+    description: "both arrays have different length",
     expectedOutput: false,
   },
   {
@@ -70,13 +70,13 @@ const testCases = [
   {
     input1: { a: 1 },
     input2: { a: 1 },
-    description: " both are objects with same keys",
+    description: "both are objects with same keys",
     expectedOutput: true,
   },
   {
     input1: { a: 1 },
     input2: { b: 1 },
-    description: " both are objects with different keys",
+    description: "both are objects with different keys",
     expectedOutput: false,
   },
   {
@@ -91,9 +91,15 @@ const testCases = [
     description: "both are nested objects",
     expectedOutput: true,
   },
+  {
+    input1: { 0: 1 },
+    input2: [1],
+    description: "object and array with same keys and values",
+    expectedOutput: false,
+  },
 ];
 
-for (let testCase of testCases) {
+for (const testCase of testCases) {
   const icon =
     isEqual(testCase.input1, testCase.input2) === testCase.expectedOutput
       ? "✅"

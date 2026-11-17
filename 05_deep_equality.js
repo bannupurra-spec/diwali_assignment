@@ -9,7 +9,7 @@ function isEqual(value1, value2) {
     if (Array.isArray(value1) !== Array.isArray(value2)) return false;
 
     for (const key in value1) {
-      let result = key in value2 && isEqual(value1[key], value2[key]);
+      const result = key in value2 && isEqual(value1[key], value2[key]);
       if (!result) return false;
     }
     return true;
