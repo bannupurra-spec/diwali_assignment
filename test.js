@@ -8,6 +8,8 @@ function test(description, expectedOutput, input1, input2) {
 }
 
 function testNumbers() {
+  console.log("Testing Numbers");
+
   test("Two same numbers should be true", true, 1, 1);
   test("Two different numbers should be false", false, 1, 2);
   test("Two same negative numbers should be true", true, -1, -1);
@@ -16,6 +18,8 @@ function testNumbers() {
 }
 
 function testStrings() {
+  console.log("Testing Strings");
+
   test("Two same empty strings should be true", true, "", "");
   test("Two same strings should be true", true, "str", "str");
   test("Two different strings should be false", false, "str", "s");
@@ -25,6 +29,8 @@ function testStrings() {
 }
 
 function testBoolean() {
+  console.log("Testing Boolean");
+
   test("Two same boolean should be true", true, true, true);
   test("Two different boolean should be false", false, false, true);
   test("boolean and number should be false", false, false, 10);
@@ -34,6 +40,8 @@ function testBoolean() {
 }
 
 function testUndefinedNullNaN() {
+  console.log("Testing Undefined , Null , NaN");
+
   test("Two same NULL values should be true", true, null, null);
   test("Two same Undefined values should be true", true, undefined, undefined);
   test("Two same NaN values should be true", true, NaN, NaN);
@@ -44,6 +52,8 @@ function testUndefinedNullNaN() {
 }
 
 function testObjects() {
+  console.log("Testing Objects");
+
   test("Two empty objects should be true", true, {}, {});
   test("Empty and non-empty object should be false", false, { a: 1 }, {});
   test(
@@ -69,6 +79,8 @@ function testObjects() {
 }
 
 function testArray() {
+  console.log("Testing Arrays");
+
   test("Two empty arrays should be true", true, [], []);
   test("object and list should be false", false, {}, []);
   test("two arrays with diff values should be false", false, [1], [2]);
